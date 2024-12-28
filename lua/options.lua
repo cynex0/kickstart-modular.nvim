@@ -1,4 +1,4 @@
--- [[ Setting options ]]
+-- [[ Kickstart options ]]
 -- See `:help vim.opt`
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
@@ -62,4 +62,21 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
--- vim: ts=2 sts=2 sw=2 et
+-- [[Custom]]
+vim.opt.nu = true
+vim.opt.relativenumber = true
+
+-- vim.opt.tabstop = 4
+-- vim.opt.softtabstop = 4
+-- vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+
+vim.opt.smartindent = true
+
+vim.opt.wrap = false
+
+vim.opt.scrolloff = 8
+
+vim.opt.updatetime = 50
+
+vim.opt.colorcolumn = '80'
