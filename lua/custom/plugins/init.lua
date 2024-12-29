@@ -10,8 +10,6 @@ return {
     config = function()
       local harpoon = require 'harpoon'
       harpoon:setup()
-      --[[
-      -- basic telescope configuration
       local conf = require('telescope.config').values
       local function toggle_telescope(harpoon_files)
         local file_paths = {}
@@ -30,10 +28,9 @@ return {
           })
           :find()
       end
-      ]]
 
       vim.keymap.set('n', '<leader>hh', function()
-        harpoon.ui:toggle_quick_menu(harpoon:list())
+        toggle_telescope(harpoon:list())
       end, { desc = 'Open harpoon list' })
 
       vim.keymap.set('n', '<leader>ha', function()
@@ -72,6 +69,16 @@ return {
       vim.cmd 'let g:minimap_width = 10'
       vim.cmd 'let g:minimap_auto_start = 1'
       vim.cmd 'let g:minimap_auto_start_win_enter = 1'
+    end,
+  },
+  {
+    'Exafunction/codeium.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'hrsh7th/nvim-cmp',
+    },
+    config = function()
+      require('codeium').setup {}
     end,
   },
 }
