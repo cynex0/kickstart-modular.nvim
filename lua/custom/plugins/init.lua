@@ -88,11 +88,11 @@ return {
     cmd = { 'G', 'Git', 'Gdiffsplit', 'Gread', 'Gwrite', 'Ggrep', 'GMove', 'GDelete', 'GBrowse', 'GRemove', 'GRename', 'Glgrep', 'Gedit' },
     keys = {
       {
-        '<leader>gg',
+        '<leader>gs',
         function()
           vim.cmd 'G'
         end,
-        desc = '[G]eneric [g]it command',
+        desc = '[G]eneric [s]tatus',
       },
       {
         '<leader>gc',
