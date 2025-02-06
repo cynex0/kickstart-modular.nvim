@@ -114,7 +114,7 @@ return {
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'path' },
-          { name = 'codeium' },
+          -- { name = 'codeium' },
         },
         formatting = {
           fields = { 'abbr', 'kind', 'menu' },
@@ -122,7 +122,7 @@ return {
             mode = 'symbol',
             maxwidth = 35,
             ellipsis_char = '...',
-            symbol_map = { Codeium = '' },
+            -- symbol_map = { Codeium = '' },
           },
           expandable_indicator = false,
         },

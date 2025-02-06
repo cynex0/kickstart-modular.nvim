@@ -83,16 +83,23 @@ return {
     end,
   },
   {
+    'jasonpanosso/harpoon-tabline.nvim',
+    requires = { { 'ThePrimeagen/harpoon' } },
+    config = function()
+      require('harpoon-tabline').setup()
+    end,
+  },
+  {
     'tpope/vim-fugitive',
     key = { '<leader>gs' },
     cmd = { 'G', 'Git', 'Gdiffsplit', 'Gread', 'Gwrite', 'Ggrep', 'GMove', 'GDelete', 'GBrowse', 'GRemove', 'GRename', 'Glgrep', 'Gedit' },
     keys = {
       {
-        '<leader>gs',
+        '<leader>gg',
         function()
           vim.cmd 'G'
         end,
-        desc = '[G]eneric [s]tatus',
+        desc = '[G]it status',
       },
       {
         '<leader>gc',
@@ -146,17 +153,17 @@ return {
       },
     },
   },
-  {
-    'wfxr/minimap.vim',
-    build = 'cargo install --locked code-minimap',
-    lazy = false,
-    cmd = { 'Minimap', 'MinimapClose', 'MinimapToggle', 'MinimapRefresh', 'MinimapUpdateHighlight' },
-    init = function()
-      vim.cmd 'let g:minimap_width = 10'
-      vim.cmd 'let g:minimap_auto_start = 1'
-      vim.cmd 'let g:minimap_auto_start_win_enter = 1'
-    end,
-  },
+  -- {
+  --   'wfxr/minimap.vim',
+  --   build = 'cargo install --locked code-minimap',
+  --   lazy = false,
+  --   cmd = { 'Minimap', 'MinimapClose', 'MinimapToggle', 'MinimapRefresh', 'MinimapUpdateHighlight' },
+  --   init = function()
+  --     vim.cmd 'let g:minimap_width = 10'
+  --     vim.cmd 'let g:minimap_auto_start = 1'
+  --     vim.cmd 'let g:minimap_auto_start_win_enter = 1'
+  --   end,
+  -- },
   {
     'Exafunction/codeium.nvim',
     dependencies = {
@@ -164,7 +171,50 @@ return {
       'hrsh7th/nvim-cmp',
     },
     config = function()
-      require('codeium').setup {}
+      require('codeium').setup {
+        enable_chat = false,
+        enable_cmp_source = false,
+        virtual_text = {
+          enabled = true,
+        },
+      }
+    end,
+  },
+  {
+    'declancm/cinnamon.nvim',
+    version = '*', -- use latest release
+    config = function()
+      local cinnamon = require 'cinnamon'
+      cinnamon.setup {
+        disabled = false,
+        keymaps = {
+          -- Enable the provided 'basic' keymaps
+          basic = true,
+          -- Enable the provided 'extra' keymaps
+          extra = false,
+        },
+        options = {
+          --   max_delta = {
+          --     time = 100,
+          --   },
+          delay = 4,
+        },
+      }
+
+      vim.keymap.set('n', '<C-U>', function()
+        cinnamon.scroll '<C-U>zz'
+      end)
+      vim.keymap.set('n', '<C-D>', function()
+        cinnamon.scroll '<C-D>zz'
+      end)
+
+      -- LSP:
+      vim.keymap.set('n', 'gd', function()
+        cinnamon.scroll(vim.lsp.buf.definition)
+      end)
+      vim.keymap.set('n', 'gD', function()
+        cinnamon.scroll(vim.lsp.buf.declaration)
+      end)
     end,
   },
 }

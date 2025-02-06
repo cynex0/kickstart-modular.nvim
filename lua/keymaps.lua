@@ -33,20 +33,6 @@ map('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 map('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 map('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
--- [[ Basic Autocommands ]]
---  See `:help lua-guide-autocommands`
-
--- Highlight when yanking (copying) text
---  Try it with `yap` in normal mode
---  See `:help vim.highlight.on_yank()`
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-})
-
 -- [[Custom Keymaps]]
 
 -- remap nvchad defaults
@@ -65,16 +51,21 @@ map('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move selection up' })
 
 -- cursor positions
 -- map('n', 'J', 'mzJ`z') -- keep cursor at the same spot on J
-map('n', '<C-d>', '<C-d>zz') -- keep cursor in the middle of the screen on C-d
-map('n', '<C-u>', '<C-u>zz') -- keep cursor in the middle of the screen on C-d
+-- map('n', '<C-d>', '<C-d>zz') -- keep cursor in the middle of the screen on C-d
+-- map('n', '<C-u>', '<C-u>zz') -- keep cursor in the middle of the screen on C-d
 
 map('x', '<leader>p', '"_dP', { desc = 'Paste over' })
+map('n', '<leader>p', '"+p', { desc = 'Paste from clipboard' })
+map('n', '<leader>P', '"*p', { desc = 'Paste from selection' })
 
 map('n', '<leader>y', '"+y', { desc = 'Yank to clipboard' })
 map('v', '<leader>y', '"+y', { desc = 'Yank to clipboard' })
 map('n', '<leader>Y', '"+Y', { desc = 'Yank to clipboard' })
 
-map('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Replace word' })
+map('n', '<leader>n', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Search and replace word' })
 
 map('n', '<A-p>', '<cmd>cprev<CR>', { desc = 'Quikfix: [p]rev' })
 map('n', '<A-n>', '<cmd>cnext<CR>', { desc = 'Quikfix: [n]ext' })
+
+-- stupid map for stupid course
+map('n', '<leader>mm', "<cmd>execute 'w! main.' . expand('%:e')<CR>")
