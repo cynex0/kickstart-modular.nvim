@@ -107,5 +107,22 @@ require 'lazy-bootstrap'
 -- [[ Configure and install plugins ]]
 require 'lazy-plugins'
 
+local client = vim.lsp.start_client {
+  name = 'cdecl_lsp',
+  cmd = { '/home/cynex/source/projects/cdecl-lsp/main' },
+}
+
+if not client then
+  vim.notify 'Failed to start cdecl-lsp'
+  return
+end
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'c', 'h' },
+  callback = function()
+    vim.lsp.buf_attach_client(0, client)
+  end,
+})
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

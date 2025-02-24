@@ -67,5 +67,6 @@ map('n', '<leader>n', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { 
 map('n', '<A-p>', '<cmd>cprev<CR>', { desc = 'Quikfix: [p]rev' })
 map('n', '<A-n>', '<cmd>cnext<CR>', { desc = 'Quikfix: [n]ext' })
 
--- stupid map for stupid course
-map('n', '<leader>mm', "<cmd>execute 'w! main.' . expand('%:e')<CR>")
+-- stupid maps for stupid course
+map('n', '<leader>mm', "<cmd>execute 'w! main.' . expand('%:e')<CR>", { desc = 'Save as main' })
+map('n', '<leader>mx', '<cmd>%!xxd<CR>', { desc = 'Hex dump' })
